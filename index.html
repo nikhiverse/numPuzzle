@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>numPuzzle Challenge</title>
+    <link rel="icon" type="image/png" href="pics/logo.png" />
+    <link href="numPuzz.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="game-wrapper">
+      <div id="header-container">
+        <img src="pics/logo.png" alt="NumPuzzle Logo" id="header-logo" />
+        <h1 id="title">numPuzzle Challenge</h1>
+      </div>
+
+      <div id="setup-screen">
+        <div class="setup-section">
+          <h3>Puzzle Size</h3>
+          <div class="difficulty-options">
+            <div class="radio-option selected" data-option="gridSize">
+              <input type="radio" name="gridSize" id="mini" value="4" checked />
+              <label for="mini">4x4 (Mini - 15 Tiles)</label>
+            </div>
+            <div class="radio-option" data-option="gridSize">
+              <input type="radio" name="gridSize" id="penta" value="5" />
+              <label for="hexa">5x5 (Penta - 24 Tiles)</label>
+            </div>
+            <div class="radio-option" data-option="gridSize">
+              <input type="radio" name="gridSize" id="hexa" value="6" />
+              <label for="max">6x6 (Hexa - 35 Tiles)</label>
+            </div>
+            <div class="radio-option" data-option="gridSize">
+              <input type="radio" name="gridSize" id="max" value="7" />
+              <label for="max">7x7 (Max - 48 Tiles)</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="setup-section">
+          <h3>Select Sorting</h3>
+          <div class="difficulty-options">
+            <div class="radio-option selected" data-option="sortOrder">
+              <input
+                type="radio"
+                name="sortOrder"
+                id="ascending"
+                value="ascending"
+                checked
+              />
+              <label for="ascending">Ascending (1 to End)</label>
+            </div>
+            <div class="radio-option" data-option="sortOrder">
+              <input
+                type="radio"
+                name="sortOrder"
+                id="descending"
+                value="descending"
+              />
+              <label for="descending">Descending (End to 1)</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="setup-section">
+          <h3>Time Limit (Minutes)</h3>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 15px;
+              margin-top: 10px;
+            "
+          >
+            <input
+              type="number"
+              id="time-limit"
+              min="1"
+              max="10"
+              value="5"
+              style="
+                padding: 10px;
+                border-radius: 8px;
+                border: 1px solid #0096ff;
+                background: #000;
+                color: white;
+                width: 80px;
+                text-align: center;
+                font-size: 1.1rem;
+              "
+            />
+            <span style="color: #888">Range: 1-10 min</span>
+          </div>
+        </div>
+
+        <button class="start-btn" onclick="game.startGame()">
+          Start Puzzle
+        </button>
+      </div>
+
+      <div id="game-screen">
+        <div id="game-header">
+          <div class="game-info">Size: <span id="size-display">5x5</span></div>
+          <div class="game-info">
+            Sort: <span id="sort-display">Ascending</span>
+          </div>
+        </div>
+
+        <div id="game-container">
+          <div id="timer-container">
+            <div id="medal-container">
+              <div class="icon">🔢</div>
+              <div id="moves">Moves: 0</div>
+            </div>
+            <div id="clock-container">
+              <div class="icon">⏳</div>
+              <div id="watch">05:00</div>
+            </div>
+          </div>
+          <div id="square-container"></div>
+          <div id="control-buttons">
+            <button
+              class="control-btn"
+              id="new-game-btn"
+              onclick="game.backToSetup()"
+            >
+              Main Menu
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="numPuzz.js"></script>
+  </body>
+</html>
