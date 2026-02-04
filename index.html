@@ -3,15 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>numPuzzle Challenge</title>
+    <title>numPuzzle</title>
     <link rel="icon" type="image/png" href="pics/logo.png" />
     <link href="numPuzz.css" rel="stylesheet" type="text/css" />
   </head>
+
   <body>
     <div id="game-wrapper">
       <div id="header-container">
         <img src="pics/logo.png" alt="NumPuzzle Logo" id="header-logo" />
-        <h1 id="title">numPuzzle Challenge</h1>
+        <h1 id="title">numPuzzle</h1>
       </div>
 
       <div id="setup-screen">
@@ -24,45 +25,65 @@
             </div>
             <div class="radio-option" data-option="gridSize">
               <input type="radio" name="gridSize" id="penta" value="5" />
-              <label for="hexa">5x5 (Penta - 24 Tiles)</label>
+              <label for="penta">5x5 (Penta - 24 Tiles)</label>
             </div>
             <div class="radio-option" data-option="gridSize">
               <input type="radio" name="gridSize" id="hexa" value="6" />
-              <label for="max">6x6 (Hexa - 35 Tiles)</label>
-            </div>
-            <div class="radio-option" data-option="gridSize">
-              <input type="radio" name="gridSize" id="max" value="7" />
-              <label for="max">7x7 (Max - 48 Tiles)</label>
+              <label for="hexa">6x6 (Hexa - 35 Tiles)</label>
             </div>
           </div>
         </div>
 
         <div class="setup-section">
-          <h3>Select Sorting</h3>
+          <h3>Select Range</h3>
           <div class="difficulty-options">
-            <div class="radio-option selected" data-option="sortOrder">
+            <div class="radio-option selected" data-option="rangeMode">
               <input
                 type="radio"
-                name="sortOrder"
-                id="ascending"
-                value="ascending"
+                name="rangeMode"
+                id="normal"
+                value="normal"
                 checked
               />
-              <label for="ascending">Ascending (1 to End)</label>
+              <label for="normal">Normal</label>
             </div>
-            <div class="radio-option" data-option="sortOrder">
-              <input
-                type="radio"
-                name="sortOrder"
-                id="descending"
-                value="descending"
-              />
-              <label for="descending">Descending (End to 1)</label>
+            <div class="radio-option" data-option="rangeMode">
+              <input type="radio" name="rangeMode" id="expand" value="expand" />
+              <label for="expand">Expand</label>
             </div>
           </div>
         </div>
 
         <div class="setup-section">
+          <h3>Timer Mode</h3>
+          <div class="difficulty-options">
+            <div class="radio-option selected" data-option="timerMode">
+              <input
+                type="radio"
+                name="timerMode"
+                id="normalTime"
+                value="countup"
+                checked
+              />
+              <label for="normalTime">⏱️ CountUp Timer</label>
+            </div>
+            <div class="radio-option" data-option="timerMode">
+              <input
+                type="radio"
+                name="timerMode"
+                id="countdown"
+                value="countdown"
+              />
+              <label for="countdown">⏳ Countdown Timer</label>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="setup-section"
+          id="time-limit-section"
+          style="display: none"
+        >
           <h3>Time Limit (Minutes)</h3>
           <div
             style="
@@ -102,15 +123,17 @@
         <div id="game-header">
           <div class="game-info">Size: <span id="size-display">5x5</span></div>
           <div class="game-info">
-            Sort: <span id="sort-display">Ascending</span>
+            Range: <span id="range-display">Normal</span>
+          </div>
+          <div class="game-info">
+            Expected Moves: <span id="expected-moves-display">0</span>
           </div>
         </div>
 
         <div id="game-container">
           <div id="timer-container">
             <div id="medal-container">
-              <div class="icon">🔢</div>
-              <div id="moves">Moves: 0</div>
+              <div id="moves">Moves: 00</div>
             </div>
             <div id="clock-container">
               <div class="icon">⏳</div>
@@ -130,6 +153,7 @@
         </div>
       </div>
     </div>
+    <script src="astar_solver.js"></script>
     <script src="numPuzz.js"></script>
   </body>
 </html>
